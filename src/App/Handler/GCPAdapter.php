@@ -10,7 +10,7 @@ use Psr\Http\Server\RequestHandlerInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Laminas\Diactoros\Response\JsonResponse;
 
-class GoogleHandler implements MiddlewareInterface 
+class GCPAdapter implements MiddlewareInterface 
 {
      private string $serviceName;
 
