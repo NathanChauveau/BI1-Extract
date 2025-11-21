@@ -8,7 +8,7 @@ use Mezzio\Application;
 use Mezzio\MiddlewareFactory;
 use Psr\Container\ContainerInterface;
 use App\Handler\HelloHandler;
-use App\Handler\GoogleHandler;
+use App\Handler\GCPAdapterImpl;
 
 /**
  * FastRoute route configuration
@@ -41,9 +41,10 @@ use App\Handler\GoogleHandler;
  * );
  */
 
+
 return static function (Application $app, MiddlewareFactory $factory, ContainerInterface $container): void {
     $app->get('/', HomePageHandler::class, 'home');
     $app->get('/api/ping', PingHandler::class, 'api.ping');
     $app->get('/api/hello', HelloHandler::class,'api.hello');
-    $app->get('/api/show',GoogleHandler::class, 'api.show');
+    $app->route('/api', GCPAdapterImpl::class,['upload','download','delete','list']);
 };
