@@ -1,0 +1,10 @@
+@startuml
+
+class Diagramme {
+    +creer()
+    +lire()
+    +mettreAJour()
+    +supprimer()
+}
+
+@enduml
