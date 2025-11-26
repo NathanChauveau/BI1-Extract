@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Handler;
 
-use App\Handler\BucketAdapter;
-use Test\Handler\MockGCPSDK;
+use App\Handler\DriveAdapter;
+use AppTest\Handler\MockGCPSDK;
 
-class GCPAdapterImpl implements BucketAdapter 
+class GCPAdapterImpl implements DriveAdapter 
 {
     public function upload(string $localSrc, string $remoteSrc): void
     {
@@ -24,8 +24,8 @@ class GCPAdapterImpl implements BucketAdapter
     }
     public function list(string $remoteSrc): array #todo 
     {
-        $GCPSDK = new MockGCPSDK();
-        return $GCPSDK->listObjects($remoteSrc);
+        $sdk = new MockGCPSDK();
+        return $sdk->listObjects($remoteSrc);
     }
 
 }

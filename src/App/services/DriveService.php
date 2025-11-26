@@ -7,13 +7,13 @@ namespace App\Handler;
 
 use App\Handler\BucketAdapter;
 
-class BucketService  
+class DriveService  
 {
-    private BucketAdapter $adapter;
+    private DriveAdapter $adapter;
 
-    public function __construct(CloudProvider $provider)
+    public function __construct(DriveAdapter $adapter)
     {
-        $this->provider = $provider;
+        $this->adapter = $adapter;
     }
 
     public function download()
@@ -26,9 +26,9 @@ class BucketService
         # Implement delete logic here
     }
 
-    public function list()#todo
+    public function list(string $remotesrc)#todo
     {
-        
+        return $this->adapter->list($remotesrc);
     }
 
     public function upload()
