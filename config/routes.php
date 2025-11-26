@@ -43,8 +43,5 @@ use App\Handler\GCPAdapterImpl;
 
 
 return static function (Application $app, MiddlewareFactory $factory, ContainerInterface $container): void {
-    $app->get('/', HomePageHandler::class, 'home');
-    $app->get('/api/ping', PingHandler::class, 'api.ping');
-    $app->get('/api/hello', HelloHandler::class,'api.hello');
     $app->route('/api', GCPAdapterImpl::class,['upload','download','delete','list']);
 };
