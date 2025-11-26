@@ -2,10 +2,8 @@
 
 declare(strict_types=1);
 
-namespace App\Handler;
-
-
-use App\Handler\BucketAdapter;
+namespace App\Services;
+use App\Handler\DriveAdapter;
 
 class DriveService  
 {

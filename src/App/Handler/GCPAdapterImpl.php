@@ -9,6 +9,13 @@ use AppTest\Handler\MockGCPSDK;
 
 class GCPAdapterImpl implements DriveAdapter 
 {
+    private $sdk;
+
+    public function __construct($sdk)
+    {
+        $this->sdk = $sdk;
+    }
+
     public function upload(string $localSrc, string $remoteSrc): void
     {
         # Implement GCP upload logic here
@@ -24,8 +31,7 @@ class GCPAdapterImpl implements DriveAdapter
     }
     public function list(string $remoteSrc): array #todo 
     {
-        $sdk = new MockGCPSDK();
-        return $sdk->listObjects($remoteSrc);
+        return $this->sdk->listObjects($remoteSrc);
     }
 
 }
