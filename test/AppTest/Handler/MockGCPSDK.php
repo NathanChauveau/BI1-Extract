@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace AppTest\Handler;
+namespace AppTest\Adapter;
 
 class MockGCPSDK 
 // Mock just here to do the base before adding the real GCP SDK 

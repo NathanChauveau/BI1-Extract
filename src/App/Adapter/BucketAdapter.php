@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Handler;
+namespace App\Adapter;
 
 
 interface BucketAdapter
@@ -13,6 +13,6 @@ interface BucketAdapter
 
     public function download(string $localSrc, string $remoteSrc): void;
     public function delete(string $remoteSrc, bool $recursive): void;
-    public function list(string $remotrSrc): array; #todo 
+    public function list(string $remotrSrc): array;  
    
 }

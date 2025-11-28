@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App;
 
+# Will might need it later, ignore for 1st livrable
+
 /**
  * The configuration provider for the App module
  *

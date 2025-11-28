@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace AppTest\Handler;
+namespace AppTest\Adapter;
 
 use App\services\BucketService;
 use PHPUnit\Framework\TestCase;
-use App\Handler\GCPAdapterImpl;
+use App\Adapter\GCPAdapterImpl;
 
 class BucketServiceTest extends TestCase
 {

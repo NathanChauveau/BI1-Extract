@@ -2,13 +2,10 @@
 
 declare(strict_types=1);
 
-use App\Handler\HomePageHandler;
-use App\Handler\PingHandler;
+
 use Mezzio\Application;
 use Mezzio\MiddlewareFactory;
 use Psr\Container\ContainerInterface;
-use App\Handler\HelloHandler;
-use App\Handler\GCPAdapterImpl;
 
 /**
  * FastRoute route configuration
@@ -43,5 +40,5 @@ use App\Handler\GCPAdapterImpl;
 
 
 return static function (Application $app, MiddlewareFactory $factory, ContainerInterface $container): void {
-    $app->route('/api', GCPAdapterImpl::class,['upload','download','delete','list']);
+    $app->get('/api/:id/objects', BucketController::class, 'list');
 };

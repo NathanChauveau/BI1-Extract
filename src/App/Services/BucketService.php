@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 namespace App\Services;
-use App\Handler\BucketAdapter;
+use App\Adapter\BucketAdapter;
 
 class BucketService  
 {
@@ -24,7 +24,7 @@ class BucketService
         # Implement delete logic here
     }
 
-    public function list(string $remotesrc)#todo
+    public function list(string $remotesrc)
     {
         return $this->adapter->list($remotesrc);
     }

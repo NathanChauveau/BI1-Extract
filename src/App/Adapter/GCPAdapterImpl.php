@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Handler;
+namespace App\Adapter;
 
-use App\Handler\BucketAdapter;
-use AppTest\Handler\MockGCPSDK;
+use App\Adapter\BucketAdapter;
+use AppTest\Adapter\MockGCPSDK;
 
 class GCPAdapterImpl implements BucketAdapter 
 {
@@ -29,7 +29,7 @@ class GCPAdapterImpl implements BucketAdapter
     {
         # Implement GCP delete logic here
     }
-    public function list(string $remoteSrc): array #todo 
+    public function list(string $remoteSrc): array  
     {
         return $this->sdk->listObjects($remoteSrc);
     }
