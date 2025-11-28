@@ -3,13 +3,13 @@
 declare(strict_types=1);
 
 namespace App\Services;
-use App\Handler\DriveAdapter;
+use App\Handler\BucketAdapter;
 
-class DriveService  
+class BucketService  
 {
-    private DriveAdapter $adapter;
+    private BucketAdapter $adapter;
 
-    public function __construct(DriveAdapter $adapter)
+    public function __construct(BucketAdapter $adapter)
     {
         $this->adapter = $adapter;
     }

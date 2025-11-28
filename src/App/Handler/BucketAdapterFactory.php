@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace App\Handler;
 
 
-use App\Handler\DriveAdapter;
+use App\Handler\BucketAdapter;
 use AppTest\Handler\CloudProvider;
 use Exception;
 
-class DriveAdapterFactory 
+class BucketAdapterFactory 
 {
-public function getAdapter(CloudProvider $provider): DriveAdapter    {
+public function getAdapter(CloudProvider $provider): BucketAdapter    {
         switch($provider){
             case 'gcp':
                 return new GCPAdapterImpl($provider);

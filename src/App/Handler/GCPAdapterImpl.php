@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Handler;
 
-use App\Handler\DriveAdapter;
+use App\Handler\BucketAdapter;
 use AppTest\Handler\MockGCPSDK;
 
-class GCPAdapterImpl implements DriveAdapter 
+class GCPAdapterImpl implements BucketAdapter 
 {
     private $sdk;
 

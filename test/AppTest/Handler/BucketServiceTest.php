@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace AppTest\Handler;
 
-use App\services\DriveService;
+use App\services\BucketService;
 use PHPUnit\Framework\TestCase;
 use App\Handler\GCPAdapterImpl;
 
-class DriveServiceTest extends TestCase
+class BucketServiceTest extends TestCase
 {
     public function testListReturnListObjectSucces(): void
     {
@@ -16,7 +16,7 @@ class DriveServiceTest extends TestCase
         $mockSdk = new MockGCPSDK();
 
         $adapter = new GCPAdapterImpl($mockSdk);
-        $service = new DriveService($adapter);
+        $service = new BucketService($adapter);
         //when execute list function
         $result = $service->list('/documents');
         //then getting list of objects in the selected folder
@@ -29,7 +29,7 @@ class DriveServiceTest extends TestCase
         $mockSdk = new MockGCPSDK();
 
         $adapter = new GCPAdapterImpl($mockSdk);
-        $service = new DriveService($adapter);
+        $service = new BucketService($adapter);
         //when
         $result = $service->list('/UnknownFolder');
         //then
