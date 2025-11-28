@@ -40,5 +40,6 @@ use Psr\Container\ContainerInterface;
 
 
 return static function (Application $app, MiddlewareFactory $factory, ContainerInterface $container): void {
-    $app->get('/api/:id/objects', BucketController::class, 'list');
+    $app->get('/api/v1/objects', BucketController::class, 'list');
+    #change it into a route with all method after 1st livrable
 };
