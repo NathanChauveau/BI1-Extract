@@ -65,6 +65,7 @@
         "phpunit/phpunit": "^11.5",
         "psalm/plugin-phpunit": "^0.19.5",
         "roave/security-advisories": "dev-master",
+        "smeghead/php-class-diagram": "^1.6",
         "vimeo/psalm": "^6.13.1"
     },
     "conflict": {
