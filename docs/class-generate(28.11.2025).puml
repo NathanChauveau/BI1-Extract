@@ -1,0 +1,43 @@
+@startuml class-diagram
+  package Adapter as Adapter {
+    interface "BucketAdapter" as Adapter_BucketAdapter {
+      +upload(localSrc, remoteSrc)
+      +download(localSrc, remoteSrc)
+      +delete(remoteSrc, recursive)
+      +list(remotrSrc)
+    }
+    class "BucketAdapterFactory" as Adapter_BucketAdapterFactory {
+      +getAdapter(provider)
+    }
+    class "GCPAdapterImpl" as Adapter_GCPAdapterImpl {
+      -sdk : 
+      +__construct(sdk)
+      +upload(localSrc, remoteSrc)
+      +download(localSrc, remoteSrc)
+      +delete(remoteSrc, recursive)
+      +list(remoteSrc)
+    }
+  }
+  package Controllers as Controllers {
+    class "BucketController" as Controllers_BucketController {
+      -service : BucketService
+      +__construct(service)
+      +listObjects(request)
+    }
+  }
+  package Services as Services {
+    class "BucketService" as Services_BucketService {
+      -adapter : BucketAdapter
+      +__construct(adapter)
+      +download()
+      +delete()
+      +list(remotesrc)
+      +upload()
+    }
+  }
+  Adapter_BucketAdapter <|-- Adapter_GCPAdapterImpl
+  Adapter_BucketAdapterFactory ..> Adapter_BucketAdapter
+  Adapter_BucketAdapterFactory ..> Adapter_GCPAdapterImpl
+  Controllers_BucketController ..> Services_BucketService
+  Services_BucketService ..> Adapter_BucketAdapter
+@enduml
