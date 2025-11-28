@@ -6,6 +6,8 @@ declare(strict_types=1);
 use Mezzio\Application;
 use Mezzio\MiddlewareFactory;
 use Psr\Container\ContainerInterface;
+use App\Controllers\BucketController;
+
 
 /**
  * FastRoute route configuration
@@ -40,6 +42,6 @@ use Psr\Container\ContainerInterface;
 
 
 return static function (Application $app, MiddlewareFactory $factory, ContainerInterface $container): void {
-    $app->get('/api/v1/objects', BucketController::class, 'list');
+    $app->get('/api/v1/objects', BucketController::class, 'listObjects'); #todo check comment les routes sont réalisé, a fouiller plus -> https://docs.mezzio.dev/mezzio/v3/features/container/intro/
     #change it into a route with all method after 1st livrable
 };

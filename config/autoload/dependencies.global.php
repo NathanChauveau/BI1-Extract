@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use App\Adapter\BucketAdapter;
+use App\Adapter\BucketAdapterFactory;
 use App\Handler\HelloHandler;
 use App\Handler\HelloHandlerFactory;
 
@@ -12,6 +14,7 @@ return [
     'dependencies' => [
         // Use 'aliases' to alias a service name to another service. The
         // key is the alias name, the value is the service to which it points.
+
         'aliases' => [
             // Fully\Qualified\ClassOrInterfaceName::class => Fully\Qualified\ClassName::class,
         ],
@@ -23,8 +26,9 @@ return [
         ],
         // Use 'factories' for services provided by callbacks/factory classes.
         'factories' => [
+            BucketAdapter::class => BucketAdapterFactory::class,
+            
             // Fully\Qualified\ClassName::class => Fully\Qualified\FactoryName::class,
-            HelloHandler::class => HelloHandlerFactory::class,
         ],
     ],
 ];
