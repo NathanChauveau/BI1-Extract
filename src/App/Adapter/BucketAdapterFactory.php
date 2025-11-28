@@ -13,11 +13,11 @@ class BucketAdapterFactory
 {
 public function getAdapter(CloudProvider $provider): BucketAdapter    {
         switch($provider){
-            case 'gcp':
+            case 'Google Cloud Provider':
                 return new GCPAdapterImpl($provider);
             default:
                 throw new Exception('No valid adapter found');
-            // throw exception if no provider is selected from the list, need to do custom exception here instead after 1st review
+            // throw exception code 404 if no provider is selected from the list, need to do custom exception here instead after 1st review
         }
     }
 

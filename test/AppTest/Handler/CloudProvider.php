@@ -6,5 +6,5 @@ namespace AppTest\Adapter;
 
 enum CloudProvider: string
 {
-case GCP = 'gcp';
+case GCP = 'Google Cloud Provider';
 }
