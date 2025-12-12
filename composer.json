@@ -47,14 +47,17 @@
     "require": {
         "php": "~8.2.0 || ~8.3.0 || ~8.4.0 || ~8.5.0",
         "composer/package-versions-deprecated": "^1.11.99.5",
+        "elie29/zend-phpdi-config": "^9.0",
+        "google/cloud-bigquery": "^1.34",
+        "google/cloud-datastore": "^2.0",
+        "google/cloud-storage": "^1.49",
         "laminas/laminas-component-installer": "^2.6 || ^3.5",
         "laminas/laminas-config-aggregator": "^1.18",
         "laminas/laminas-diactoros": "^3.8.0",
         "laminas/laminas-stdlib": "^3.21",
         "mezzio/mezzio": "^3.23.1",
-        "mezzio/mezzio-helpers": "^5.20",
-        "elie29/zend-phpdi-config": "^9.0",
-        "mezzio/mezzio-fastroute": "^3.11.0"
+        "mezzio/mezzio-fastroute": "^3.11.0",
+        "mezzio/mezzio-helpers": "^5.20"
     },
     "require-dev": {
         "filp/whoops": "^2.15.4",
