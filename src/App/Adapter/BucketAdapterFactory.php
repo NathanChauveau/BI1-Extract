@@ -6,7 +6,7 @@ namespace App\Adapter;
 
 
 use App\Adapter\BucketAdapter;
-use AppTest\Adapter\CloudProvider;
+use App\Adapter\CloudProvider;
 use Exception;
 
 class BucketAdapterFactory 
