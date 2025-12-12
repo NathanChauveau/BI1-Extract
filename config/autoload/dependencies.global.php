@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use App\Adapter\BucketAdapter;
-use App\Adapter\BucketAdapterFactory;
+use App\Handler\BucketAdapter;
+use App\Handler\BucketAdapterFactory;
 use App\Handler\HelloHandler;
 use App\Handler\HelloHandlerFactory;
 

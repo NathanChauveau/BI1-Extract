@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Adapter;
+namespace App\Handler;
 
 
-use App\Adapter\BucketAdapter;
-use App\Adapter\CloudProvider;
+use App\Handler\BucketAdapter;
+use App\Handler\CloudProvider;
 use Exception;
 
 class BucketAdapterFactory 

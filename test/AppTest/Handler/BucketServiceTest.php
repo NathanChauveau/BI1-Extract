@@ -6,7 +6,8 @@ namespace AppTest\Adapter;
 
 use App\services\BucketService;
 use PHPUnit\Framework\TestCase;
-use App\Adapter\GCPAdapterImpl;
+use App\Handler\GCPAdapterImpl;
+use AppTest\Handler\MockGCPSDK;
 
 class BucketServiceTest extends TestCase
 {

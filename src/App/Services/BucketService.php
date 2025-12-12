@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 namespace App\Services;
-use App\Adapter\BucketAdapter;
+use App\Handler\BucketAdapter;
 
 class BucketService  
 {
@@ -14,25 +14,8 @@ class BucketService
         $this->adapter = $adapter;
     }
 
-    public function download()
-    {
-        # Implement download logic here
-    }
-
-    public function delete()
-    {
-        # Implement delete logic here
-    }
-
     public function list(string $remotesrc)
     {
         return $this->adapter->list($remotesrc);
     }
-
-    public function upload()
-    {
-        # Implement upload logic here
-    }
-
-
 }

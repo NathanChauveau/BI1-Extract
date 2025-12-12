@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace AppTest\Adapter;
+namespace App\Handler;
 
 enum CloudProvider: string
 {
