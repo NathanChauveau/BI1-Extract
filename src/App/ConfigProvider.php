@@ -35,10 +35,8 @@ class ConfigProvider
         return [
             'invokables' => [
                 //Handler\PingHandler::class => Handler\PingHandler::class,
-                Controllers\BucketController::class => Controllers\BucketController::class
             ],
             'factories'  => [
-                Controllers\BucketController::class => Controllers\BucketControllerFactory::class,
                 //Handler\HomePageHandler::class => Handler\HomePageHandlerFactory::class,
             ],
         ];

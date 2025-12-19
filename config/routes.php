@@ -6,7 +6,7 @@ declare(strict_types=1);
 use Mezzio\Application;
 use Mezzio\MiddlewareFactory;
 use Psr\Container\ContainerInterface;
-use App\Controllers\BucketController;
+use App\Bucket\ListObject;
 use Mezzio\Helper\BodyParams\BodyParamsMiddleware;
 
 /**
@@ -42,5 +42,5 @@ use Mezzio\Helper\BodyParams\BodyParamsMiddleware;
 
 
 return function (Application $app, MiddlewareFactory $factory, ContainerInterface $container): void {
-    $app->get('/api/v1/objects', BucketController::class, 'api.v1.objects'); #todo check comment les routes sont réalisé, a fouiller plus -> https://docs.mezzio.dev/mezzio/v3/features/container/intro/
+    $app->get('/api/v1/objects', ListObject::class, 'api.v1.objects'); #todo check comment les routes sont réalisé, a fouiller plus -> https://docs.mezzio.dev/mezzio/v3/features/container/intro/
 };
