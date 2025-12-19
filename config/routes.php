@@ -2,11 +2,15 @@
 
 declare(strict_types=1);
 
-
+use App\Bucket\CreateObject;
+use App\Bucket\DeleteObject;
+use App\Bucket\ExistObject;
 use Mezzio\Application;
 use Mezzio\MiddlewareFactory;
 use Psr\Container\ContainerInterface;
 use App\Bucket\ListObject;
+use App\Bucket\ShareObject;
+use App\Bucket\UpdateObject;
 use Mezzio\Helper\BodyParams\BodyParamsMiddleware;
 
 /**
@@ -42,5 +46,10 @@ use Mezzio\Helper\BodyParams\BodyParamsMiddleware;
 
 
 return function (Application $app, MiddlewareFactory $factory, ContainerInterface $container): void {
-    $app->get('/api/v1/objects', ListObject::class, 'api.v1.objects'); #todo check comment les routes sont réalisé, a fouiller plus -> https://docs.mezzio.dev/mezzio/v3/features/container/intro/
+    $app->get('/api/v1/objects', ListObject::class, 'api.v1.objects.list');
+    $app->post('/api/v1/objects', CreateObject::class, 'api.v1.objects.create');
+    $app->get('/api/v1/objects/share',  ShareObject::class, 'api.v1.objects.share');    
+    $app->get('/api/v1/objects/exist', ExistObject::class, 'api.v1.objects.exist');
+    $app->route('/api/v1/objects', DeleteObject::class, ['DELETE'],'api.v1.objects.delete' ); //might need something
+    $app->route('/api/v1/objects', UpdateObject::class,  ['PATCH', 'PUT'],'api.v1.objects.update' ); //might need something
 };
