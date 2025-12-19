@@ -6,7 +6,6 @@ namespace App\Controllers;
 
 #todo -> current step : $service injection in controller without calling listObjects | next step : be able to call service from controller
 
-use App\Services\BucketService;
 use Laminas\Diactoros\Response\JsonResponse;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
@@ -17,13 +16,6 @@ class BucketController implements RequestHandlerInterface
 # do rest of method after 1st livrable
 # might need to think how to do the rest of the methods later
 {
-    private BucketService $service;
-
-
-    public function __construct(BucketService $service)
-    {
-        $this->service = $service;
-    }
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
         //
@@ -34,8 +26,8 @@ class BucketController implements RequestHandlerInterface
 
     public function listObjects(string $remoteSrc)
     {
-        $result = $this->service->list($remoteSrc);
+       /*$result = $this->service->list($remoteSrc);
 
-        return $result;
+        return $result;*/
     }
 }
