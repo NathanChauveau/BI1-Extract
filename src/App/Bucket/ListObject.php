@@ -18,10 +18,12 @@ class ListObject implements RequestHandlerInterface
 {
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        //
-        /*$remoteSrc = $request->getQueryParams()['remoteSrc'];
-        return $this->listObjects($remoteSrc);*/
-        return new JsonResponse(['status' => 'ok']);
+        //in WIP to get remoteSrc's data
+        $data = $request->getParsedBody();
+
+        $remoteSrc = $data['remoteSrc'];
+       // return $this->listObjects($remoteSrc);*/
+        return new JsonResponse(['status' => $remoteSrc]);
     }
 
     public function listObjects(string $remoteSrc)
