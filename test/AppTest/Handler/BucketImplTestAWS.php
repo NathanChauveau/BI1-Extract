@@ -9,8 +9,9 @@ use PHPUnit\Framework\TestCase;
 use App\Handler\GCPAdapterImpl;
 use AppTest\Handler\MockGCPSDK;
 
-class BucketServiceTest extends TestCase
+class BucketImplTestAWS extends TestCase
 {
+        private IAWSClient $mockAWSclient;
     public function testListReturnListObjectSucces(): void
     {
         //given prepare mock sdk

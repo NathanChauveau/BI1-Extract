@@ -7,9 +7,9 @@ namespace App\Handler;
 use App\Handler\BucketAdapter;
 use AppTest\Adapter\MockGCPSDK;
 
-class GCPAdapterImpl implements BucketAdapter 
+class AWSAdapterImpl implements BucketAdapter 
 {
-    private $gcpClient;
+    private $awsClient;
 
     public function __construct($sdk)
     {
