@@ -1,48 +1,42 @@
 # BI1-Extract
 
-The title must be replaced by the application's name>.
-
 ## Description
 
-This project is designed to be able to interact with 3 providers and the main features are 
-- Listing a bucket
-- Download a file from the bucket
-- Upload a file into the bucket
-- Delete a file from the bucket
+This project is designed to be able to interact with 2 providers and the main features are 
+- Listing a bucket or a folder in the bucket
+- Download an object from the bucket
+- Upload an object into the bucket
+- Delete an object from the bucket
+- Share an object from the bucket, the link is temporary
+- Create an object from the bucket
+- Check if an object exist
 
-All should work on all 3 of these providers:
+All those methods should work on those providers:
 - Google Cloud Provider
 - AWS
-- Azure
 
 ## Getting Started
 
 ### Prerequisites
 
-List all dependencies and their version needed by the project as :
-
 * PHP 8.3.11 
 * Visual Studio Code 1.105.1 
 * Composer 2.8.12 
-* Windows 
+* Windows 11 Éducation 24H2
 
 ## Deployment
 
 ### On dev environment WIP
-
-How to get dependencies and build?
-
-
 
 get all packages with composer by typing this :
 
 ```shell
 composer install
 ```
-
-
-
-How to run the tests?
+then serve with composer
+```shell
+composer serve
+```
 
 To test all test, just type this to the terminal :
 
@@ -58,17 +52,37 @@ How to deploy the application outside the dev environment.
 * Tip: try the tree bash command
 
 ```shell
-├───Docs
-├───Shopping                                        //descption of the folder content, if not self explained
-│   ├───bin                                         //
-│   │   └───Debug
-│   └───obj
-│       └───Debug                                   
-└───TestShopping                                    //
-    ├───bin
-    │   └───Debug
-    └───obj
-        └───Debug
+src
+│   └───App
+│       │   ConfigProvider.php
+│       │   
+│       ├───Bucket
+│       │       CreateObject.php
+│       │       DeleteObject.php
+│       │       ExistObject.php
+│       │       ListObject.php
+│       │       ShareObject.php
+│       │       UpdateObject.php
+│       │       
+│       ├───Handler
+│       │       AWSAdapterImpl.php
+│       │       BucketAdapter.php
+│       │       BucketAdapterFactory.php
+│       │       CloudProvider.php
+│       │       GCPAdapterImpl.php
+│       │       
+│       └───Services
+│               BucketService.php
+│               
+├───test
+│   └───AppTest
+│       │   InMemoryContainer.php
+│       │   
+│       └───Handler
+│               BucketImplTestAWS.php
+│               BucketImplTestGCP.php
+│               MockGCPSDK.php
+
 ```
 
 ## Collaborate
