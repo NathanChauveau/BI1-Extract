@@ -5,10 +5,7 @@ declare(strict_types=1);
 namespace AppTest\Handler;
 
 use App\Handler\AWSAdapterImpl;
-use App\services\BucketService;
 use PHPUnit\Framework\TestCase;
-use App\Handler\GCPAdapterImpl;
-use AppTest\Handler\MockGCPSDK;
 use App\Handler\IAWSClient;
 
 final class AWSBucketAdapterImplTest extends TestCase
@@ -23,7 +20,7 @@ final class AWSBucketAdapterImplTest extends TestCase
 
         //given -> prepare the AWS mock
         $this->mockClient = $this->createMock(IAWSClient::class);
-        $this->adapter = new AWSAdapterImpl($this->mockClient, $this->bucket);
+        $this->adapter = new AWSAdapterImpl($this->mockClient);
     }
     public function testUploadObjectSuccess(): void
     {
@@ -33,7 +30,7 @@ final class AWSBucketAdapterImplTest extends TestCase
         //when execute the function
         $this->mockClient->expects($this->once())
             ->method('putObject')
-            ->with($this->bucket, $fileName, $content);
+            ->with($fileName, $content);
         //then the function is executed without errors
         $this->adapter->upload($fileName, $content);
     }
@@ -62,7 +59,7 @@ final class AWSBucketAdapterImplTest extends TestCase
         //when
         $this->mockClient->expects($this->once())
             ->method('listObjects')
-            ->with($this->bucket, $remoteSrc)
+            ->with($remoteSrc)
             ->willReturn($expectedList);
 
         $result = $this->adapter->list($remoteSrc);
@@ -94,7 +91,7 @@ final class AWSBucketAdapterImplTest extends TestCase
         //when
         $this->mockClient->expects($this->once())
             ->method('updateObject')
-            ->with($this->bucket, $fileName, $content);
+            ->with( $fileName, $content);
         //then
         $this->adapter->update($fileName, $content);
     }
@@ -118,7 +115,7 @@ final class AWSBucketAdapterImplTest extends TestCase
         $expectedContent = 'File content';
         //when
         $this->mockClient->method('getObject')
-            ->with($this->bucket, $fileName)
+            ->with( $fileName)
             ->willReturn($expectedContent);
         //then
         $this->assertEquals($expectedContent, $this->adapter->download($fileName));
@@ -146,7 +143,7 @@ final class AWSBucketAdapterImplTest extends TestCase
         //when
         $this->mockClient->expects($this->once())
             ->method('shareObject')
-            ->with($this->bucket, $fileName)
+            ->with( $fileName)
             ->willReturn($expectedUrl);
         //then
         $result = $this->adapter->share($fileName, $duration);
@@ -174,7 +171,7 @@ final class AWSBucketAdapterImplTest extends TestCase
         $fileName = 'file.txt';
         //when
         $this->mockClient->method('doesObjectExist')
-            ->with($this->bucket, $fileName)
+            ->with( $fileName)
             ->willReturn(true);
         $reflection = new \ReflectionClass($this->adapter);
         $method = $reflection->getMethod('doesExist');
@@ -189,7 +186,7 @@ final class AWSBucketAdapterImplTest extends TestCase
         //when
         $this->mockClient->expects($this->once())
             ->method('deleteObject')
-            ->with($this->bucket, $fileName);
+            ->with( $fileName);
         //then
         $this->adapter->delete($fileName);
     }
