@@ -2,17 +2,15 @@
 
 declare(strict_types=1);
 
-use App\Bucket\CreateObject;
-use App\Bucket\DeleteObject;
-use App\Bucket\ExistObject;
+use App\Controllers\CreateObject;
+use App\Controllers\DeleteObject;
+use App\Controllers\ExistObject;
 use Mezzio\Application;
 use Mezzio\MiddlewareFactory;
 use Psr\Container\ContainerInterface;
-use App\Bucket\ListObject;
-use App\Bucket\ShareObject;
-use App\Bucket\UpdateObject;
-use App\Bucket\TestHandler;
-use Mezzio\Helper\BodyParams\BodyParamsMiddleware;
+use App\Controllers\ListObject;
+use App\Controllers\ShareObject;
+use App\Controllers\UpdateObject;
 
 /**
  * FastRoute route configuration

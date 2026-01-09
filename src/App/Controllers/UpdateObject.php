@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Bucket;
+namespace App\Controllers;
 
 #todo -> current step : $service injection in controller without calling listObjects | next step : be able to call service from controller
 
