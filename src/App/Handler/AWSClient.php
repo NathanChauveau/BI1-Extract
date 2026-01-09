@@ -44,4 +44,21 @@ class AWSClient implements IAWSClient
         }
         return $objects;
     }
+    public function shareObject(string $bucket, string $key, int $duration): string
+    {
+        $cmd = $this->s3->getCommand('GetObject', [
+            'Bucket' => $bucket,
+            'Key'    => $key,
+        ]);
+        $request = $this->s3->createPresignedRequest($cmd, "+{$duration} seconds");
+        return (string) $request->getUri();
+    }
+    public function doesObjectExist(string $bucket, string $key): bool
+    {
+        return $this->s3->doesObjectExist($bucket, $key);
+    }
+    public function updateObject(string $bucket, string $key, string $body): void
+    {
+        $this->putObject($bucket, $key, $body);
+    }
 }
