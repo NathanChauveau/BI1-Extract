@@ -2,10 +2,12 @@
 
 declare(strict_types=1);
 
+use App\Factories\AWSClientFactory;
 use App\Handler\BucketAdapter;
-use App\Handler\BucketAdapterFactory;
-use App\Handler\HelloHandler;
-use App\Handler\HelloHandlerFactory;
+use App\Factories\BucketAdapterFactory;
+use App\Factories\S3ClientFactory;
+use App\Handler\AWSClient;
+use Aws\S3\S3Client;
 
 return [
     // Provides application-wide services.
@@ -27,6 +29,8 @@ return [
         // Use 'factories' for services provided by callbacks/factory classes.
         'factories' => [
             BucketAdapter::class => BucketAdapterFactory::class,
+            S3Client::class => S3ClientFactory::class,
+            AWSClient::class => AWSClientFactory::class
             
             // Fully\Qualified\ClassName::class => Fully\Qualified\FactoryName::class,
         ],
