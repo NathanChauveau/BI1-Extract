@@ -47,13 +47,10 @@ use Mezzio\Helper\BodyParams\BodyParamsMiddleware;
 
 
 return function (Application $app, MiddlewareFactory $factory, ContainerInterface $container): void {
-    //if error during doing inject into list method -> ignore them
-    $app->get('/api/v1/objects', ListObject::class, 'api.v1.objects.list');
-        $app->get('/api/v1/test', TestHandler::class);
-
-    $app->post('/api/v1/upload', CreateObject::class, 'api.v1.objects.create');
-    $app->get('/api/v1/objects/share',  ShareObject::class, 'api.v1.objects.share');    
-    $app->get('/api/v1/objects/exist', ExistObject::class, 'api.v1.objects.exist');
-    $app->route('/api/v1/objects', DeleteObject::class, ['DELETE'],'api.v1.objects.delete' ); //might need something
-    $app->route('/api/v1/objects', UpdateObject::class,  ['PATCH', 'PUT'],'api.v1.objects.update' ); //might need something
+    $app->get('/api/objects', ListObject::class, 'api.v1.objects.list');
+    $app->get('/api/upload', CreateObject::class, 'api.v1.objects.create');
+    $app->get('/api/objects/share',  ShareObject::class, 'api.v1.objects.share');    
+    $app->get('/api/objects/exist', ExistObject::class, 'api.v1.objects.exist');
+    $app->route('/api/objects', DeleteObject::class, ['DELETE'],'api.v1.objects.delete' ); //might need something
+    $app->route('/api/objects', UpdateObject::class,  ['PATCH', 'PUT'],'api.v1.objects.update' ); //might need something
 };
