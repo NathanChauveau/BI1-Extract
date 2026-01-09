@@ -2,22 +2,22 @@
 
 ## Description
 
-This project is designed to be able to interact with 2 providers and the main features are 
-- Listing a bucket or a folder in the bucket
-- Download an object from the bucket
-- Upload an object into the bucket
-- Delete an object from the bucket
-- Share an object from the bucket, the link is temporary
-- Create an object from the bucket
-- Check if an object exist
+Ce projet consiste à pouvoir intéragir avec 2 fournisseurs avec les commandes ci-dessous:
+- Lister l'intérieur d'un bucket à n'importe quel endroit de celui-ci (avec/sans recursive)
+- Télécharger un objet depuis le bucket
+- D'envoyer un objet dans le bucket
+- Supprimer un objet du bucket
+- Partager un objet du bucket via un lien temporaire
+- Vérifier si un objet existe ou pas
+- Mettre à jour un objet spécifique dans le bucket
 
-All those methods should work on those providers:
-- Google Cloud Provider
-- AWS
+Ces méthodes devront être fonctionnelles avec ces fournisseurs uniquement :
+- Google Cloud Provider (GCP)
+- Amazon Web Services (AWS)
 
-## Getting Started
+## Pour commencer
 
-### Prerequisites
+### Prerequire
 
 * PHP 8.3.11 
 * Visual Studio Code 1.105.1 
@@ -26,37 +26,39 @@ All those methods should work on those providers:
 
 ## Deployment
 
-### On dev environment WIP
-
-get all packages with composer by typing this :
-
+### Sur l'environnement dev
+Recevez tous les paquets du projet via cette commande là:
 ```shell
 composer install
 ```
-then serve with composer
+puis réalisé un serve :
 ```shell
 composer serve
 ```
 
-To test all test, just type this to the terminal :
-
+Pour tester tous les testes, réalisé cette commande là:
 ```shell
 ./vendor/bin/phpunit
 ```
-### On integration environment
+Pour un test uniquement :
+```shell
+./vendor/bin/phpunit --filter *NomDuTest*
+```
 
-How to deploy the application outside the dev environment.
+### Sur l'environnement de production
 
-## Directory structure WIP
+Aucun pour le moment
+
+## Structure du répertoire WIP
 
 * Tip: try the tree bash command
 
 ```shell
-src
+├───src
 │   └───App
 │       │   ConfigProvider.php
 │       │   
-│       ├───Bucket
+│       ├───Controllers
 │       │       CreateObject.php
 │       │       DeleteObject.php
 │       │       ExistObject.php
@@ -64,12 +66,18 @@ src
 │       │       ShareObject.php
 │       │       UpdateObject.php
 │       │       
+│       ├───Factories
+│       │       AWSClientFactory.php
+│       │       BucketAdapterFactory.php
+│       │       S3ClientFactory.php
+│       │       
 │       ├───Handler
 │       │       AWSAdapterImpl.php
+│       │       AWSClient.php
 │       │       BucketAdapter.php
-│       │       BucketAdapterFactory.php
 │       │       CloudProvider.php
 │       │       GCPAdapterImpl.php
+│       │       IAWSClient.php
 │       │       
 │       └───Services
 │               BucketService.php
@@ -79,25 +87,23 @@ src
 │       │   InMemoryContainer.php
 │       │   
 │       └───Handler
-│               BucketImplTestAWS.php
+│               AWSBucketAdapterImplTest.php
 │               BucketImplTestGCP.php
 │               MockGCPSDK.php
 
 ```
 
-## Collaborate
+## Collaborer
 
 * Take time to read some readme and find the way you would like to help other developers collaborate with you.
 
-* They need to know:
-  * How to propose a new feature (issue, pull request)
-  * [How to commit](https://www.conventionalcommits.org/en/v1.0.0/)
-  * [How to use your workflow](https://nvie.com/posts/a-successful-git-branching-model/)
+Convention
+Commit
+Ce projet utilise les [Conventional Commits](https://www.conventionalcommits.org/). Les morts principaux étant: feat, fix, chore, refactor, test, docs.
 
-## License
-
-* [Choose the license adapted to your project](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/licensing-a-repository).
+Workflow
+Ce projet utilise Git. Les branches utilisés sont les suivantes: main, develop, feature, release, hotfix. Les noms des branches suivent ce pattern: type/short-description eg.(feature/awsome-feature).
 
 ## Contact
 
-* How to get in contact with you? Discord, Trello, Issue?
+Nathan Chauveau	nathan.chauveau@eduvaud.ch
