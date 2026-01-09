@@ -7,41 +7,41 @@ namespace App\Handler;
 use App\Handler\BucketAdapter;
 use AppTest\Adapter\MockGCPSDK;
 use App\Handler\IAWSClient;
+use Aws\AwsClient;
 
 class AWSAdapterImpl implements BucketAdapter 
 {
     public function __construct(
-        private IAWSClient $client,
-        private string $bucket
+        private IAWSClient $client
     ) {}
 
     public function upload(string $remote, string $content): void
     {
-        $this->client->putObject($this->bucket, $remote, $content);
+        $this->client->putObject($remote, $content);
     }
-    public function list(string $remoteSrc): array  
+    public function list(string $remoteSrc, bool $recursive=false): array  
     {
-        return $this->client->listObjects($this->bucket, $remoteSrc);
+        return $this->client->listObjects($remoteSrc, $recursive);
     }
     public function download(string $remote): string
     {
-        return $this->client->getObject($this->bucket, $remote);
+        return $this->client->getObject( $remote);
     }
     public function delete(string $remote, bool $recursive = false): void
     {
-        $this->client->deleteObject($this->bucket, $remote, $recursive);
+        $this->client->deleteObject( $remote, $recursive);
     }
     public function update(string $remote, string $content): void
     {
-        $this->client->updateObject($this->bucket, $remote, $content);
+        $this->client->updateObject( $remote, $content);
     }
     public function share(string $remote, int $duration): string
     {
-       return $this->client->shareObject($this->bucket, $remote, $duration);
+       return $this->client->shareObject( $remote, $duration);
     }
     public function doesExist(string $remote): bool
     {
-        return $this->client->doesObjectExist($this->bucket, $remote);
+        return $this->client->doesObjectExist($remote);
     }
 
 }

@@ -5,36 +5,37 @@ use Aws\S3\S3Client;
 
 class AWSClient implements IAWSClient
 {
-
-    public function __construct(private S3Client $s3) {}
-    public function putObject(string $bucket, string $key, string $body): void
+    public function __construct(private S3Client $s3, private string $bucket) {}
+    public function putObject(string $key, string $body): void
     {
         $this->s3->putObject([
-            'Bucket' => $bucket,
+            'Bucket' => $this->bucket,
             'Key'    => $key,
             'Body'   => $body,
         ]);
     }
-    public function getObject(string $bucket, string $key): string
+    public function getObject(string $key): string
     {
         $result = $this->s3->getObject([
-            'Bucket' => $bucket,
+            'Bucket' => $this->bucket,
             'Key'    => $key,
         ]);
         return (string) $result['Body'];
     }
-    public function deleteObject(string $bucket, string $key): void
+    public function deleteObject(string $key, bool $recursive): void
     {
         $this->s3->deleteObject([
-            'Bucket' => $bucket,
+            'Bucket' => $this->bucket,
+            'Recursive'=> $recursive,
             'Key'    => $key,
         ]);
     }
-    public function listObjects(string $bucket, string $prefix): array
+    public function listObjects(string $key, bool $recursive): array
     {
         $result = $this->s3->listObjectsV2([
-            'Bucket' => $bucket,
-            'Prefix' => $prefix,
+            'Bucket' => $this->bucket,
+            'Recursive'=> $recursive,
+            'Key'    => $key,
         ]);
         $objects = [];
         if (isset($result['Contents'])) {
@@ -44,21 +45,21 @@ class AWSClient implements IAWSClient
         }
         return $objects;
     }
-    public function shareObject(string $bucket, string $key, int $duration): string
+    public function shareObject(string $key, int $duration): string
     {
         $cmd = $this->s3->getCommand('GetObject', [
-            'Bucket' => $bucket,
+            'Bucket' => $this->bucket,
             'Key'    => $key,
         ]);
         $request = $this->s3->createPresignedRequest($cmd, "+{$duration} seconds");
         return (string) $request->getUri();
     }
-    public function doesObjectExist(string $bucket, string $key): bool
+    public function doesObjectExist(string $key): bool
     {
-        return $this->s3->doesObjectExist($bucket, $key);
+        return $this->s3->doesObjectExist($this->bucket,$key);
     }
-    public function updateObject(string $bucket, string $key, string $body): void
+    public function updateObject(string $key, string $body): void
     {
-        $this->putObject($bucket, $key, $body);
+        $this->putObject($key, $body);
     }
 }
