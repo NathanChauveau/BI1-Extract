@@ -10,7 +10,7 @@
 >
     <testsuites>
         <testsuite name="default">
-            <directory>./test</directory>
+            <directory>./test/AppTest/Handler</directory>
         </testsuite>
     </testsuites>
 

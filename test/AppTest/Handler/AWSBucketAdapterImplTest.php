@@ -2,29 +2,53 @@
 
 declare(strict_types=1);
 
-namespace AppTest\Adapter;
+namespace AppTest\Handler;
 
+use App\Handler\AWSAdapterImpl;
 use App\services\BucketService;
 use PHPUnit\Framework\TestCase;
 use App\Handler\GCPAdapterImpl;
 use AppTest\Handler\MockGCPSDK;
+use App\Handler\IAWSClient;
 
-class BucketImplTestAWS extends TestCase
+final class AWSBucketAdapterImplTest extends TestCase
 {
-    private IAWSClient $mockAWSclient;
     public function testListReturnListObjectSucces(): void
     {
         //given prepare mock sdk
-        $mockSdk = new MockGCPSDK();
-
-        $adapter = new GCPAdapterImpl($mockSdk);
-        $service = new BucketService($adapter);
+        $mockClient = $this->createMock(IAWSClient::class);
         //when execute list function
-        $result = $service->list('/documents');
+        $mockClient->expects($this->once())
+            ->method('putObject')
+            ->with(
+                'test-bucket',
+                'file.txt',
+                'content'
+            );
+        $adapter = new AWSAdapterImpl(
+            $mockClient,
+            'test-bucket'
+        );
+        $adapter->upload('file.txt', 'content');
         //then getting list of objects in the selected folder
-        $this->assertEquals(['file1.txt', 'file2.txt'], $result);
     }
 
+  /*  public function testDownloadReturnsContent(): void
+    {
+        $mockClient = $this->createMock(IAWSClient::class);
+
+        $mockClient->method('getObject')
+            ->with('test-bucket', 'file.txt')
+            ->willReturn('hello');
+
+        $adapter = new AWSAdapterImpl(
+            $mockClient,
+            'test-bucket'
+        );
+
+        $this->assertSame('hello', $adapter->download('file.txt'));
+    }
+*/
     public function testListReturnListObjectFail(): void
     {
         //given
