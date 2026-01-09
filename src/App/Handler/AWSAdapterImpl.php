@@ -6,18 +6,22 @@ namespace App\Handler;
 
 use App\Handler\BucketAdapter;
 use AppTest\Adapter\MockGCPSDK;
+use App\Handler\IAWSClient;
 
 class AWSAdapterImpl implements BucketAdapter 
 {
-    private $awsClient;
+    public function __construct(
+        private IAWSClient $client,
+        private string $bucket
+    ) {}
 
-    public function __construct($sdk)
+    public function upload(string $remote, string $content): void
     {
-        $this->sdk = $sdk;
+        $this->client->putObject($this->bucket, $remote, $content);
     }
     public function list(string $remoteSrc): array  
     {
-        return $this->sdk->listObjects($remoteSrc);
+        return $this->client->listObjects($this->bucket, $remoteSrc);
     }
 
 }
