@@ -4,10 +4,16 @@ declare(strict_types=1);
 
 namespace App;
 
+use App\Factories\AWSClientFactory;
 use App\Handler\GCPAdapterImpl;
 use AppTest\Adapter\BucketImplTestGCP;
-use AppTest\Adapter\BucketImplTestAWS;
+use AppTest\Handler\AWSBucketAdapterImplTest;
 use App\Handler\AWSAdapterImpl;
+use App\Handler\BucketAdapter;
+use App\Factories\BucketAdapterFactory;
+use App\Factories\S3ClientFactory;
+use App\Handler\AWSClient;
+use Aws\S3\S3Client;
 
 # Will might need it later, ignore for 1st livrable
 
@@ -41,10 +47,13 @@ class ConfigProvider
             'invokables' => [
                 //Handler\PingHandler::class => Handler\PingHandler::class,
                 GCPAdapterImpl::class => BucketImplTestGCP::class,
-                AWSAdapterImpl::class => BucketImplTestAWS::class
+                AWSAdapterImpl::class => AWSBucketAdapterImplTest::class
             ],
             'factories'  => [
                 //Handler\HomePageHandler::class => Handler\HomePageHandlerFactory::class,
+                BucketAdapter::class => BucketAdapterFactory::class,
+                S3Client::class => S3ClientFactory::class,
+                AWSClient::class => AWSClientFactory::class
             ],
         ];
     }
