@@ -9,5 +9,6 @@ interface BucketAdapter
 {
     // Define any methods that the DefaultSDKHandler should implement then send it to all SDK Handlers
     public function list(string $remotrSrc): array;  
+    public function upload(string $remote, string $content): void;
    
 }

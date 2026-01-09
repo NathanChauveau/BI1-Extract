@@ -24,10 +24,8 @@ class CreateObject implements RequestHandlerInterface
         return new JsonResponse(['status' => 'ok']);
     }
 
-    public function listObjects(string $remoteSrc)
+    public function uploadObjects(string $remoteSrc, string $content): void
     {
-       /*$result = $this->service->list($remoteSrc);
-
-        return $result;*/
+        
     }
 }

@@ -46,6 +46,7 @@ use Mezzio\Helper\BodyParams\BodyParamsMiddleware;
 
 
 return function (Application $app, MiddlewareFactory $factory, ContainerInterface $container): void {
+    //if error during doing inject into list method -> ignore them
     $app->get('/api/v1/objects', ListObject::class, 'api.v1.objects.list');
     $app->post('/api/v1/objects', CreateObject::class, 'api.v1.objects.create');
     $app->get('/api/v1/objects/share',  ShareObject::class, 'api.v1.objects.share');    

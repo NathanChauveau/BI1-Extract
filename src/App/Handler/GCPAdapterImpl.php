@@ -9,7 +9,7 @@ use AppTest\Adapter\MockGCPSDK;
 
 class GCPAdapterImpl implements BucketAdapter 
 {
-    private $sdk;
+    private $gcpClient;
 
     public function __construct($sdk)
     {

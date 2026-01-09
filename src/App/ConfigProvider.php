@@ -4,6 +4,11 @@ declare(strict_types=1);
 
 namespace App;
 
+use App\Handler\GCPAdapterImpl;
+use AppTest\Adapter\BucketImplTestGCP;
+use AppTest\Adapter\BucketImplTestAWS;
+use App\Handler\AWSAdapterImpl;
+
 # Will might need it later, ignore for 1st livrable
 
 /**
@@ -35,6 +40,8 @@ class ConfigProvider
         return [
             'invokables' => [
                 //Handler\PingHandler::class => Handler\PingHandler::class,
+                GCPAdapterImpl::class => BucketImplTestGCP::class,
+                AWSAdapterImpl::class => BucketImplTestAWS::class
             ],
             'factories'  => [
                 //Handler\HomePageHandler::class => Handler\HomePageHandlerFactory::class,

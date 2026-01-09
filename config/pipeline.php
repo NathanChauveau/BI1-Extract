@@ -14,6 +14,7 @@ use Mezzio\Router\Middleware\ImplicitOptionsMiddleware;
 use Mezzio\Router\Middleware\MethodNotAllowedMiddleware;
 use Mezzio\Router\Middleware\RouteMiddleware;
 use Psr\Container\ContainerInterface;
+use Mezzio\Helper\BodyParams\BodyParamsMiddleware;
 
 /**
  * Setup middleware pipeline:
@@ -46,6 +47,8 @@ return function (Application $app, MiddlewareFactory $factory, ContainerInterfac
     // Register the routing middleware in the middleware pipeline.
     // This middleware registers the Mezzio\Router\RouteResult request attribute.
     $app->pipe(RouteMiddleware::class);
+        $app->pipe(BodyParamsMiddleware::class);
+
 
     // The following handle routing failures for common conditions:
     // - HEAD request but no routes answer that method

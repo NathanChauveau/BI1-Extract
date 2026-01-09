@@ -18,4 +18,8 @@ class BucketService
     {
         return $this->adapter->list($remotesrc);
     }
+    public function upload(string $remote, string $content): void
+    {
+        $this->adapter->upload($remote, $content);
+    }
 }
