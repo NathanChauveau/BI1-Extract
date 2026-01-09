@@ -7,4 +7,5 @@ namespace App\Handler;
 enum CloudProvider: string
 {
 case GCP = 'Google Cloud Provider';
+case AWS = 'Amazon Web Services';
 }

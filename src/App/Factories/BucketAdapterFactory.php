@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 namespace App\Factories;
-require 'vendor/global.php';
 use App\Handler\AWSAdapterImpl;
 use App\Handler\BucketAdapter;
 use App\Handler\CloudProvider;
@@ -15,9 +14,8 @@ use Psr\Container\ContainerInterface;
 class BucketAdapterFactory 
 {
 public function __invoke(ContainerInterface $container): BucketAdapter    {
-    //à définir    
-    $provider = $container->get('Provider');
-        $config = $container->get('config')['aws'];
+      
+    $provider = $container->get(CloudProvider::class);
         switch($provider){
             case 'Google Cloud Provider':
                 //need to update after AWS
