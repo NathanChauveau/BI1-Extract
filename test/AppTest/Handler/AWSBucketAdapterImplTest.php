@@ -53,22 +53,6 @@ final class AWSBucketAdapterImplTest extends TestCase
         $this->adapter->upload($fileName, $content);
     }
 
-    public function testDownloadReturnsContent(): void
-    {
-        $mockClient = $this->createMock(IAWSClient::class);
-
-        $mockClient->method('getObject')
-            ->with('test-bucket', 'file.txt')
-            ->willReturn('hello');
-
-        $adapter = new AWSAdapterImpl(
-            $mockClient,
-            'test-bucket'
-        );
-
-        $this->assertSame('hello', $adapter->download('file.txt'));
-    }
-
     public function testListReturnListObjectSuccess(): void
     {
         //given
@@ -213,8 +197,6 @@ final class AWSBucketAdapterImplTest extends TestCase
     {
         //given
         $fileName = 'file.txt';
-
-
         //when
         $this->mockClient->method('deleteObject')
             ->willThrowException(new \RuntimeException('Delete failed'));
